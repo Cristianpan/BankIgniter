@@ -1,0 +1,30 @@
+@use 'variables' as v; 
+@mixin tablet {
+    @media (min-width: 768px) {
+        @content;
+    }
+
+}
+@mixin telefono {
+    @media (min-width: 480px) {
+        @content;
+    }
+}
+
+@mixin boton-icono {
+    display: block;
+    border-radius: 0.5rem;
+    background-color: v.$purple;
+    transition: background-color 0.3s;
+    padding: 0.5rem 1rem;
+    opacity: 0.75;
+
+    img {
+        width: 3.5rem;
+    }
+
+    &:hover {
+        background-color: v.$primary;
+        opacity: 1;
+    }
+}

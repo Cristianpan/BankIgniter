@@ -1,0 +1,48 @@
+@use '../base/mixins' as m;
+@use '../base/variables' as v; 
+
+.card {
+    min-width: 80%;
+    height: auto;
+    padding: 2rem;
+    background-color: white;
+    margin: 0 auto;
+    box-shadow: 4px 4px 14px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 1rem;
+    margin-bottom: 3rem;
+
+
+    &__titulo {
+        color: #222020;
+        font-weight: normal;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #e1e1e1;
+    }
+
+    @include m.tablet {
+        padding: 2rem 3rem;
+    }
+
+
+    &__agregar {
+        display: block;
+        width: 100%;
+        margin: 2rem auto 0 auto;
+        padding: 1rem 0;
+        color: v.$purple;
+        font-weight: bold;
+        letter-spacing: 0.1rem;
+        border-radius: 1rem;
+        border: 2px dashed v.$purple;
+        transition: all 0.3s;
+
+        @include m.tablet {
+            width: 50%;
+        }
+
+        &:hover {
+            color: v.$primary;
+            border-color: v.$primary;
+        }
+    }
+}

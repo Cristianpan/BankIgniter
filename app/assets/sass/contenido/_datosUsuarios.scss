@@ -1,0 +1,83 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+.cliente {
+    margin-top: 2rem;
+    display: grid;
+    gap: 2rem;
+
+    &__label {
+        margin-bottom: 1rem;
+        color: #6F6F6F;
+        font-size: 2rem;
+    }
+
+    &__info {
+        letter-spacing: 0.2rem;
+        color: #222020;
+        word-break: break-all;
+    }
+
+    @include m.telefono {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include m.tablet {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    &__botones {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: 2rem;
+
+        @include m.telefono {
+            flex-wrap: nowrap;
+        }
+
+        @include m.tablet {
+            margin-top: 0; 
+        }
+    }
+
+    &__boton {
+        @include m.boton-icono; 
+        width: 100%;
+        
+        @include m.tablet {
+            width: auto;
+        }
+    }
+}
+
+
+.cuenta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #e1e1e1;
+
+    &__info {
+        @extend .cliente__info; 
+    }
+
+    &__label {
+        @extend .cliente__label; 
+    }
+
+    &__eliminar {
+        @include m.boton-icono; 
+        width: 100%;
+        margin-top: 2rem; 
+
+        @include m.tablet {
+            width: auto;
+            margin: 0;
+        }
+    }
+}
