@@ -1,0 +1,78 @@
+@use '../base/mixins' as m;
+@use '../base/variables' as v; 
+.form {
+    margin: 5rem auto; 
+    
+    @include m.tablet {
+        width: 60%;
+    }
+
+    &__field {
+        margin-bottom: 1.5rem;
+    }
+
+    &__label {
+        display: block;
+        font-size: 2rem;
+        margin: 0 0 1.5rem 1rem; 
+        color: v.$dark;
+    }
+
+    &__input {
+        padding: 1rem 2rem;
+    }
+
+    &__grid {
+        @include m.tablet {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+    }
+
+
+    &__buttons {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        margin: 3rem 0;
+        
+        @include m.telefono {
+            padding: 0 5rem;
+            flex-direction: row;
+        }
+    }
+
+    &__cancelar, &__submit {
+        width: 100%;
+        padding: 1rem 0; 
+        border-radius: 1rem;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    &__cancelar {
+        border: 0.2rem solid v.$purple;
+        color: v.$purple;
+        transition: border-color 0.2s, background-color 0.2s;
+
+        &:hover {
+            border-color: darken(v.$purple, 10);
+            color: v.$blanco;
+            background-color: v.$purple;
+        }
+    }
+
+    &__submit {
+        background-color: lighten(v.$primary, 5);
+        color: v.$blanco;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: v.$primary;
+        }
+    }
+
+}
