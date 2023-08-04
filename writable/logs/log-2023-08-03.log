@@ -1,0 +1,21 @@
+ERROR - 2023-08-03 23:43:38 --> mysqli_sql_exception: Table 'clientes' already exists in C:\wamp64\www\codeigniter\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\codeigniter\system\Database\MySQLi\Connection.php(295): mysqli->query('CREATE TABLE `c...', 0)
+#1 C:\wamp64\www\codeigniter\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `c...')
+#2 C:\wamp64\www\codeigniter\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `c...')
+#3 C:\wamp64\www\codeigniter\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `c...')
+#4 C:\wamp64\www\codeigniter\app\Database\Migrations\2023-08-03-233849_Cuentas.php(27): CodeIgniter\Database\Forge->createTable('clientes')
+#5 C:\wamp64\www\codeigniter\system\Database\MigrationRunner.php(877): App\Database\Migrations\Cuentas->up()
+#6 C:\wamp64\www\codeigniter\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\wamp64\www\codeigniter\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\wamp64\www\codeigniter\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\wamp64\www\codeigniter\system\CLI\Console.php(37): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\wamp64\www\codeigniter\spark(97): CodeIgniter\CLI\Console->run()
+#11 {main}
+CRITICAL - 2023-08-03 23:58:52 --> Array to string conversion
+in APPPATH\Controllers\CtrlUsuariosRegistro.php on line 17.
+ 1 APPPATH\Controllers\CtrlUsuariosRegistro.php(17): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\wamp64\\www\\codeigniter\\app\\Controllers\\CtrlUsuariosRegistro.php', 17)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\CtrlUsuariosRegistro->registrar()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CtrlUsuariosRegistro))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

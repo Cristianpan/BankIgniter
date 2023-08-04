@@ -1,6 +1,6 @@
 <header class="header">
     <a class="logo" href="/">
-        <img class="logo__imagen" src="assets/img/logo.svg" alt="logo" />
+        <img class="logo__imagen" src="<?= base_url()?>/assets/img/logo.svg" alt="logo" />
         <h1 class="logo__texto">Bird<span class="logo__span">Bank</span></h1>
     </a>
 

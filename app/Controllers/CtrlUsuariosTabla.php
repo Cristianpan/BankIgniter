@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class CtrlUsuariosRegistrados extends BaseController
+class CtrlUsuariosTabla extends BaseController
 {
     public function index()
     {

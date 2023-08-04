@@ -1,7 +1,7 @@
 @use '../base/mixins' as m;
 @use '../base/variables' as v; 
 .form {
-    margin: 5rem auto; 
+    margin: 3rem auto; 
     
     @include m.tablet {
         width: 60%;
@@ -14,12 +14,13 @@
     &__label {
         display: block;
         font-size: 2rem;
-        margin: 0 0 1.5rem 1rem; 
+        margin: 0 0 1.5rem 0; 
         color: v.$dark;
     }
 
     &__input {
-        padding: 1rem 2rem;
+        padding: 2.5rem 2rem;
+        font-size: 2rem;
     }
 
     &__grid {
@@ -47,7 +48,7 @@
 
     &__cancelar, &__submit {
         width: 100%;
-        padding: 1rem 0; 
+        padding: 1.2rem 0; 
         border-radius: 1rem;
         font-size: 2rem;
         font-weight: bold;
@@ -74,5 +75,27 @@
             background-color: v.$primary;
         }
     }
+}
 
+.error {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin: 0 0 1rem 0;
+    color: darken(v.$primary, 10);
+}
+
+.success {
+    border-left: 1rem solid darken(#45CFDD, 20);
+    background-color: darken(rgb(69 207 221 / 0.5), 10);
+    padding: 2rem 5rem;
+    font-size: 2rem;
+    color: v.$dark;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    margin: 3rem auto 0 auto;
+
+    @include m.tablet {
+        max-width: 60%;
+    }
 }
