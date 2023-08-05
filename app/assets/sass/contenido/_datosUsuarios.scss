@@ -40,7 +40,17 @@
         @include m.tablet {
             margin-top: 0; 
         }
+
+        form {
+            width: 100%;
+            @include m.tablet {
+                width: auto
+            }
+        }
     }
+
+   
+
 
     &__boton {
         @include m.boton-icono; 
@@ -50,6 +60,7 @@
             width: auto;
         }
     }
+    
 }
 
 
@@ -61,6 +72,13 @@
     gap: 1rem;
     padding: 1rem 0;
     border-bottom: 1px solid #e1e1e1;
+
+    form {
+        width: 100%;
+        @include m.tablet {
+            width: auto
+        }
+    }
 
     &__info {
         @extend .cliente__info; 

@@ -75,27 +75,11 @@
             background-color: v.$primary;
         }
     }
-}
 
-.error {
-    font-size: 1.6rem;
-    font-weight: bold;
-    margin: 0 0 1rem 0;
-    color: darken(v.$primary, 10);
-}
-
-.success {
-    border-left: 1rem solid darken(#45CFDD, 20);
-    background-color: darken(rgb(69 207 221 / 0.5), 10);
-    padding: 2rem 5rem;
-    font-size: 2rem;
-    color: v.$dark;
-    font-weight: bold;
-    text-align: center;
-    width: 100%;
-    margin: 3rem auto 0 auto;
-
-    @include m.tablet {
-        max-width: 60%;
+    .error {
+        font-size: 1.6rem;
+        margin: 0 0 1rem 0;
+        color: darken(v.$error, 10); 
     }
 }
+

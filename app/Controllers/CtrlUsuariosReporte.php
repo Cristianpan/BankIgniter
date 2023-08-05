@@ -8,6 +8,6 @@ class CtrlUsuariosReporte extends BaseController
 {
     public function index()
     {
-        return view ('reporte'); 
+        return view ('cliente/reporte'); 
     }
 }

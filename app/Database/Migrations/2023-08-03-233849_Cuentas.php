@@ -24,7 +24,7 @@ class Cuentas extends Migration
             ]
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('clienteId', 'clientes', 'id');
+        $this->forge->addForeignKey('clienteId', 'clientes', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('cuentas');
     }
 

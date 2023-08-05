@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use Exception;
 
 class Cliente extends Model
 {
@@ -40,4 +41,34 @@ class Cliente extends Model
             'regex_match' => 'El CURP no cumple con el formato válido',
         ],
     ];
+
+    protected $afterFind = ['obtenerCuentas'];
+    protected $beforeInsert = ['existeCurp'];
+    protected $beforeUpdate = ['existeCurp'];
+
+    protected function existeCurp(array $data): array
+    {
+        if (isset($data['data']['curp'])) {
+            $cantidad = $this->where('curp', $data['data']['curp'])->countAllResults();
+
+            if ($cantidad) {
+                throw new Exception('La CURP del cliente ya ha sido registrada');
+            }
+        }
+
+        return $data;
+    }
+
+    protected function obtenerCuentas(array $data)
+    {
+        if ($data['method'] === 'first') {
+            $cuenta = new Cuenta();
+
+            if (isset($data["data"]['id'])) {
+                $data['data']['cuentas'] = $cuenta->where('clienteId', $data['data']["id"])->findAll();
+            }
+        }
+
+        return $data;
+    }
 }

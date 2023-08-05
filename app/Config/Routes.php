@@ -2,6 +2,8 @@
 
 namespace Config;
 
+use App\Controllers\CtrlUsuariosTabla;
+
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
@@ -28,9 +30,15 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'CtrlUsuariosTabla::index');
+$routes->get('/curp/(:alphanum)', 'CtrlUsuariosTabla::index/$1');
 
 $routes->get('/registro', 'CtrlUsuariosRegistro::index');
 $routes->post('/registro', 'CtrlUsuariosRegistro::registrar');
+$routes->get('/editar/(:any)', 'CtrlUsuariosRegistro::index/$1'); 
+$routes->post('/editar/(:num)/(:alphanum)', 'CtrlUsuariosRegistro::editar/$1/$2'); 
+
+$routes->post('/cliente/eliminar', 'CtrlUsuariosTabla::eliminarCliente'); 
+
 $routes->get('/reporte', 'CtrlUsuariosReporte::index');
 
 /*

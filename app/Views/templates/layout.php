@@ -20,5 +20,6 @@
     
     <?=$this->renderSection('content') ?>
 
+    <script src="<?= base_url()?>/assets/js/app.bundler.js"></script>
   </body>
 </html>
