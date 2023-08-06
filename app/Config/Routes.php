@@ -31,13 +31,15 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'CtrlUsuariosTabla::index');
 $routes->get('/curp/(:alphanum)', 'CtrlUsuariosTabla::index/$1');
+$routes->post('/cliente/eliminar', 'CtrlUsuariosTabla::eliminarCliente');
+$routes->post('/cuenta/eliminar', 'CtrlUsuariosTabla::eliminarCuenta');  
+$routes->post('/cuenta/agregar', 'CtrlUsuariosTabla::agregarCuenta');  
 
 $routes->get('/registro', 'CtrlUsuariosRegistro::index');
 $routes->post('/registro', 'CtrlUsuariosRegistro::registrar');
 $routes->get('/editar/(:any)', 'CtrlUsuariosRegistro::index/$1'); 
 $routes->post('/editar/(:num)/(:alphanum)', 'CtrlUsuariosRegistro::editar/$1/$2'); 
 
-$routes->post('/cliente/eliminar', 'CtrlUsuariosTabla::eliminarCliente'); 
 
 $routes->get('/reporte', 'CtrlUsuariosReporte::index');
 

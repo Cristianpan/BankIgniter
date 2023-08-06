@@ -21,6 +21,9 @@ class Cuentas extends Migration
             ],
             'saldo' => [
                 'type' => 'DECIMAL(10,2)', 
+            ], 
+            'vencimiento' => [
+                'type' => 'VARCHAR(5)'
             ]
         ]);
         $this->forge->addKey('id', true);

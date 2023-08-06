@@ -11,7 +11,7 @@
         <?= $this->include('./cliente/formulario') ?>
 
         <div class="form__buttons">
-            <a class="form__cancelar" href="/">Cancelar</a>
+            <a class="form__cancelar"  href="/<?= $curp ? 'curp/' . $curp : '' ?>">Cancelar</a>
             <input class="form__submit" type="submit" value="Editar" />
         </div>
     </form>

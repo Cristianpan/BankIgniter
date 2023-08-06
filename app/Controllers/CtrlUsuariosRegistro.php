@@ -51,8 +51,10 @@ class CtrlUsuariosRegistro extends BaseController
             ];
             
             $cuenta->insert($datosCuenta);
+            session()->set('curp', $datosCliente['curp']); 
+            
             $db->transComplete();
-
+            
         } catch (\Throwable $th) {
             $db->transRollback();
             $response['message'] = $th->getMessage();

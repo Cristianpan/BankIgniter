@@ -3,8 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Cliente;
-
-use function PHPUnit\Framework\matches;
+use App\Models\Cuenta;
 
 class CtrlUsuariosTabla extends BaseController
 {
@@ -40,6 +39,53 @@ class CtrlUsuariosTabla extends BaseController
         if (!$cliente->delete($clienteId)) {
             $response = [
                 'message' =>'No se ha podido eliminar el cliente',
+                'type' => 'error',
+            ];
+        }
+
+        return redirect()->to('/curp/'. session()->get('curp'))->with('response', $response); 
+    }
+
+
+    public function agregarCuenta(){
+        $clienteId = $this->request->getPost(); 
+        $response = [
+            'message' =>'La cuenta ha sido agregada',
+            'type' => 'success',
+        ];
+        
+        $cuenta = new Cuenta(); 
+
+        try {
+            $cuenta->insert($clienteId); 
+        } catch (\Throwable $th) {
+            var_dump($th);
+            $response = [
+                'message' =>'Ha ocurrido un error, por favor intenta nuevamente',
+                'type' => 'error',
+            ];
+        }
+
+        return redirect()->to('/curp/'. session()->get('curp'))->with('response', $response); 
+    }
+
+
+    public function eliminarCuenta(){
+        $cuentaId = $this->request->getPost('cuentaId'); 
+
+        $response = [
+            'message' =>'La cuenta ha sido eliminada',
+            'type' => 'success',
+        ];
+        
+        $cuenta = new Cuenta(); 
+
+        try {
+            $cuenta->delete($cuentaId); 
+        } catch (\Throwable $th) {
+            var_dump($th);
+            $response = [
+                'message' =>$th->getMessage(),
                 'type' => 'error',
             ];
         }

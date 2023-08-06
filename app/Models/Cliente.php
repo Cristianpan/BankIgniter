@@ -61,11 +61,16 @@ class Cliente extends Model
 
     protected function obtenerCuentas(array $data)
     {
+        $cuenta = new Cuenta();
         if ($data['method'] === 'first') {
-            $cuenta = new Cuenta();
 
             if (isset($data["data"]['id'])) {
                 $data['data']['cuentas'] = $cuenta->where('clienteId', $data['data']["id"])->findAll();
+            }
+        } else if ($data['method'] === 'findAll') {
+            foreach ($data['data'] as $key => $value) {
+                
+                $data['data'][$key]['cuentas'] = $cuenta->where('clienteId', $value['id'])->findAll(); 
             }
         }
 

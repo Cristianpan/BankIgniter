@@ -4,21 +4,18 @@
 
 <main class="container">
     <h2>Buscar Cliente</h2>
-    
-    <?= $this->include('templates/modalMessage')?>
+
+    <?= $this->include('templates/modalMessage') ?>
 
     <form class="search border-r-1">
         <label for="curp" class="search__label">
-            <img src="<?=base_url()?>assets/img/lupa.svg" alt="lupa icon" />
+            <img src="<?= base_url() ?>assets/img/lupa.svg" alt="lupa icon" />
         </label>
         <input type="search" id="curp" name="curp" placeholder="Ingrese el CURP del cliente" class="search__input" />
     </form>
 
-
     <?php if (!$cliente) { ?>
-
         <p class="text-center">No se han encontrado resultados</p>
-
     <?php } else { ?>
         <div class="card">
             <h3 class="card__titulo">Información de Cliente</h3>
@@ -51,11 +48,11 @@
             </div>
             <div class="cliente__botones">
                 <a href="/editar/<?= $cliente['id'] ?>" class="cliente__boton">
-                    <img src="<?=base_url()?>assets/img/edit.svg" alt="edit icon" />
+                    <img src="<?= base_url() ?>assets/img/edit.svg" alt="edit icon" />
                 </a>
                 <form action="/cliente/eliminar" method="post">
                     <input name="clienteId" type="hidden" value="<?= $cliente['id'] ?>">
-                    <button type="submit" class="cliente__boton"><img src="<?=base_url()?>assets/img/trash.svg" alt="trash icon" /></button>
+                    <button type="submit" class="cliente__boton"><img src="<?= base_url() ?>assets/img/trash.svg" alt="trash icon" /></button>
                 </form>
             </div>
         </div>
@@ -73,17 +70,17 @@
                     </div>
                     <div>
                         <p class="cuenta__label">Fecha de Vencimiento</p>
-                        <p class="cuenta__info">10/28</p>
+                        <p class="cuenta__info"><?= $cuenta['vencimiento'] ?></p>
                     </div>
 
                     <form action="/cuenta/eliminar" method="post">
-                        <input type="hidden" value="<?= $cuenta['id'] ?>">
-                        <button type="submit" class="cuenta__eliminar"><img src="<?=base_url()?>assets/img/trash.svg" alt="trash icon" /></button>
+                        <input name="cuentaId" type="hidden" value="<?= $cuenta['id'] ?>">
+                        <button type="submit" class="cuenta__eliminar"><img src="<?= base_url() ?>assets/img/trash.svg" alt="trash icon" /></button>
                     </form>
                 </div>
             <?php endforeach ?>
             <form id="cuenta__agregar" action="/cuenta/agregar" method="post">
-                <input type="hidden" value="<?= $cliente['id'] ?>">
+                <input name="clienteId" type="hidden" value="<?= $cliente['id'] ?>">
                 <input type="submit" class="card__agregar" value="Agregar Cuenta" />
             </form>
         </div>
