@@ -56,5 +56,5 @@ jobs:
         with:
           app-name: 'mailtrap-prueba'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8D063DBE3D9E4054A7EE3847666F9F40 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8694A69CB5E24C3EA1B92E5D77916422 }}
           package: .
