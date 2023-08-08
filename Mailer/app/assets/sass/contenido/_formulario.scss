@@ -1,0 +1,62 @@
+@use '../base/mixins' as m;
+@use '../base/variables' as v; 
+
+.form {
+    margin: 3rem auto 0 auto;
+    
+    @include m.tablet {
+        width: 60%;
+    }
+
+    &__field {
+        margin-bottom: 1.5rem;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    &__label {
+        display: block;
+        color: lighten(v.$primary, 10);
+        font-weight: bold;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    &__input {
+        border: 0.1rem solid lighten(v.$dark, 50);
+        padding: 2rem;
+        width: 100%;
+        border-radius: 1rem;
+
+        &:focus-visible {
+            outline-color: lighten(v.$dark, 30);
+        }
+    }
+
+    &__buttons {
+        @include m.tablet {
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+
+    &__submit {
+        display: block;
+        background-color: v.$primary;
+        padding: 1.5rem 5rem;
+        border-radius: 1rem;
+        color: v.$white;
+        transition: background-color 0.3s;
+        cursor: pointer;
+        width: 100%;
+        @include m.tablet {
+            width: auto;
+        }
+
+        &:hover {
+            background-color: v.$primaryDark;
+        }
+    }
+}

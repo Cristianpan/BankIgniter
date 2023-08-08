@@ -1,0 +1,17 @@
+@use '../base/mixins' as m;
+@use '../base/variables' as v; 
+
+.main {
+    &__title {
+        color: v.$primary;
+        text-align: center;
+        font-size: 3.2rem;
+        line-height: 1.5;
+
+        &--span {
+            color: lighten(v.$dark, 20);
+            display: block;
+            font-size: 2rem;
+        }
+    }
+}

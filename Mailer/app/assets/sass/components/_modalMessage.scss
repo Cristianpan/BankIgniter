@@ -1,0 +1,27 @@
+@use '../base/variables' as v; 
+@use '../base/mixins' as m;
+
+.modal {
+    padding: 2rem 5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    margin: 3rem auto;
+
+    @include m.tablet {
+        max-width: 60%;
+    }
+
+    &.success {
+        border-left: 1rem solid darken(v.$succes, 20);
+        background-color: rgba(v.$succes, 0.25);
+        color: darken(v.$succes, 30); 
+    }
+
+    &.error {
+        border-left: 1rem solid v.$error;
+        background-color: rgba(v.$error, 0.25);
+        color: v.$error;
+    }
+}
