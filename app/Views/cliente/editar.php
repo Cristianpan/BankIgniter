@@ -2,6 +2,12 @@
 
 <?= $this->section('content') ?>
 
+<?php
+$errors = session()->get('errors');
+$curp = session()->get('curp');
+
+?>
+
 <main class="container">
     <h2>Editar Cliente</h2>
 

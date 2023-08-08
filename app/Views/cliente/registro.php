@@ -4,6 +4,8 @@
 
 <?php
 $errors = session()->get('errors');
+$curp = session()->get('curp');
+
 ?>
 
 <main class="container">
