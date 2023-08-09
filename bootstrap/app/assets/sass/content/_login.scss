@@ -1,0 +1,12 @@
+@use '../base/mixins' as m;
+.login {
+    min-height: 100vh;
+
+    &__card {
+        width: 80%;
+
+        @include m.tablet {
+            width: 50%;
+        }
+    }
+}
