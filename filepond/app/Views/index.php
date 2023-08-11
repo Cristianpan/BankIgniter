@@ -24,7 +24,7 @@ $response = session()->get('response');
             <?php endif ?>
 
             <form class="form w-50 m-auto" action="/save" method="POST">
-                <input class="filepond-input-multiple" name="image[]" type="file" data-max-files="10" multiple />
+                <input class="filepond-input-multiple" name="image[]" type="file" data-max-files="10" multiple required />
                 <button type="submit" class="btn btn-primary">Enviar</button>
             </form>
         </div>

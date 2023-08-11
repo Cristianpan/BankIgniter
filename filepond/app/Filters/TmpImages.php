@@ -25,16 +25,17 @@ class TmpImages implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        $images = session()->get('images') ?? []; 
-        $folderTmp = './files/tmp/'; 
+        $images = session()->get('images') ?? [];
+        $folderTmp = './files/tmp/';
 
-        foreach($images as $value) {
-            $path = $folderTmp . $value; 
-            if (file_exists($path)) {
-                unlink($path);
+        foreach ($images as $value) {
+            $files = glob($folderTmp . $value . ".*");
+  
+            if ($files && file_exists($files[0])) {
+                unlink($files[0]);
             }
         }
-        session()->remove('images'); 
+        session()->remove('images');
     }
 
     /**
