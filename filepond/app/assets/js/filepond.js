@@ -66,10 +66,18 @@ FilePond.setOptions({
       },
     },
     revert: "./revert",
-  }
+  },
 });
 
 const pond = FilePond.create(inputMultipleElements);
+
+pond.on('addfilestart', ()=> {
+  document.querySelector('#submit').disabled = true; 
+})
+
+pond.on("processfiles", () => {
+  document.querySelector('#submit').disabled = false; 
+});
 
 async function deleteFilesTmp() {
   const url = "/deleteTmp";
