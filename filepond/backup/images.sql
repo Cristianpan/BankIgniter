@@ -7,18 +7,14 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-CREATE TABLE `users` (
+CREATE TABLE `images` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `confirmado` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `url` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `users` (`id`, `nombre`, `email`, `password`, `token`, `confirmado`) VALUES
-(2, 'Cristian Pan', 'panzaldivarcristian@gmail.com', '$2y$10$XfKhfnhfgzKnaKVDSSnvjuNDis2gtAHd7AsrjjgJh9JYZxty7ZjQu', NULL, 1);
+INSERT INTO `images` (`id`, `url`) VALUES
+(1, '1691821947_4ebb478d17eb431d739e.png');
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

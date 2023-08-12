@@ -63,9 +63,5 @@ class Filters extends BaseConfig
      * Example:
      * 'isLoggedIn' => ['before' => ['account/*', 'profiles/*']]
      */
-    public array $filters = [
-        'TmpImages' => [
-            "before" => ["/"]
-        ]
-    ];
+    public array $filters = [];
 }

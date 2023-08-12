@@ -6,17 +6,30 @@ import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orien
 
 import FilePondPluginFileEncode from "filepond-plugin-file-encode";
 
-import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
+import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
+
+let storageImages = [];
+
+getStorageImages();
+
+function getStorageImages() {
+  const aux = localStorage.getItem("storageImages");
+  if (aux) {
+    storageImages = JSON.parse(aux);
+
+    deleteFilesTmp();
+  }
+}
 
 FilePond.registerPlugin(
   FilePondPluginFileEncode,
   FilePondPluginImageExifOrientation,
-  FilePondPluginImagePreview, 
+  FilePondPluginImagePreview,
   FilePondPluginFileValidateType
 );
 
 // get a reference to the input elements
-const inputMultipleElements = document.querySelectorAll(
+const inputMultipleElements = document.querySelector(
   ".filepond-input-multiple"
 );
 
@@ -27,8 +40,8 @@ FilePond.setOptions({
   imageCropAspectRatio: "1:1",
   imageResizeTargetWidth: 200,
   imageResizeTargetHeight: 200,
-  acceptedFileTypes: ['image/png', 'image/jpg', 'image/jpeg', 'video/mp4'],
-  labelFileTypeNotAllowed : 'Archivo no valido',
+  acceptedFileTypes: ["image/png", "image/jpg", "image/jpeg", "video/mp4"],
+  labelFileTypeNotAllowed: "Archivo no valido",
   fileValidateTypeLabelExpectedTypes: `Se espera {allTypes}`,
   chunkUploads: true,
   chunkSize: 1000000,
@@ -44,22 +57,34 @@ FilePond.setOptions({
             ? JSON.parse(response.responseText)
             : JSON.parse(response);
 
-        console.log(response);
+        storageImages = [...storageImages, response.key];
+        localStorage.setItem("storageImages", JSON.stringify(storageImages));
+
+        console.log(localStorage.getItem("storageImages"));
 
         return response.key;
       },
     },
     revert: "./revert",
-  },
+  }
 });
 
-// loop over input elements
-Array.from(inputMultipleElements).forEach(function (inputElement) {
-  // create a FilePond instance at the input element location
-  const pond = FilePond.create(inputElement);
+const pond = FilePond.create(inputMultipleElements);
 
-  pond.on("error", (err, file) => {
-    console.log(err, file); 
-  })
+async function deleteFilesTmp() {
+  const url = "/deleteTmp";
 
-});
+  const response = await fetch(url, {
+    method: "DELETE",
+    body: JSON.stringify(storageImages),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const result = await response.json();
+
+  if (result.ok) {
+    localStorage.removeItem("storageImages");
+  }
+}

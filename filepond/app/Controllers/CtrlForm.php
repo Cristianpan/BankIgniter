@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Image;
 use CodeIgniter\Files\File;
 
 
@@ -12,7 +13,17 @@ class CtrlForm extends BaseController
 
     public function index(): string
     {
-        return view('index');
+        $image = new Image(); 
+        $data = $image->findAll(); 
+
+        return view('index', ['images' => $data]);
+    }
+
+    public function load()
+    {
+        $file = $this->request->getGet('load');
+
+        return $file;
     }
 
     public function process()
@@ -20,16 +31,12 @@ class CtrlForm extends BaseController
         $file = $this->request->getFiles()['image'][0] ?? null;
 
         $key = md5(uniqid(rand(), true));
-        
+
         if ($file) {
             $file->move($this->folderTmp, $key . '.' .  $file->getExtension());
         }
-        
-        $images = session()->get('images') ?? [];
-        $images[] = $key;
-        session()->set('images', $images);
 
-        return json_encode(['key' => $key, 'images' => $images]);
+        return json_encode(['key' => $key]);
     }
 
     public function processChunk()
@@ -59,14 +66,23 @@ class CtrlForm extends BaseController
         $images = $this->request->getPost('image');
 
         !is_dir($this->folder) ? mkdir($this->folder) : '';
+        $image = new Image();
 
-        foreach ($images as $key => $value) {
-            $files = glob($this->folderTmp . $value . ".*");
+        foreach ($images as $value) {
 
-            if ($files){
-                $file = new File($files[0]);
-                unset($images[$key]);
-                $file->move($this->folder, $file->getRandomName());
+            try {
+                //code...
+                
+                $files = glob($this->folderTmp . $value . ".*");
+                if ($files) {
+                    $file = new File($files[0]);
+                    $fileName = $file->getRandomName();
+                    $image->insert(['url' => $fileName]);
+                    $file->move($this->folder, $fileName);
+                }
+            } catch (\Throwable $th) {
+                //throw $th;
+                var_dump($th);
             }
         }
 
@@ -80,6 +96,17 @@ class CtrlForm extends BaseController
         $this->deleteFile($this->folderTmp . $data);
 
         return $data;
+    }
+
+    public function deleteTmp()
+    {
+        $data = json_decode($this->request->getBody());
+
+        foreach ($data as $value) {
+            $this->deleteFile($this->folderTmp . $value);
+        }
+
+        return json_encode(['ok' => true]);
     }
 
     private function deleteFile($path)

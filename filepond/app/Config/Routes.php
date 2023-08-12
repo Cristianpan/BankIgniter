@@ -32,6 +32,7 @@ $routes->patch('/', 'CtrlForm::processChunk');
 $routes->post('/process', 'CtrlForm::process');
 $routes->post('/save', 'CtrlForm::save');
 $routes->delete('/revert', 'CtrlForm::revert');
+$routes->delete('/deleteTmp', 'CtrlForm::deleteTmp');
 
 
 /*
